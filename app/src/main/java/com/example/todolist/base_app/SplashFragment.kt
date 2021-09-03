@@ -35,13 +35,13 @@ class SplashFragment : Fragment() {
         setupView()
         setupTextFont(binding.title)
 
-//        Handler(Looper.getMainLooper()).postDelayed(
-//            {
-//                findNavController().navigate(
-//                    SplashFragmentDirections.actionSplashFragmentToUserPostFragment()
-//                )
-//            }, 1000
-//        )
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                findNavController().navigate(
+                    SplashFragmentDirections.actionSplashFragmentToTaskListFragment()
+                )
+            }, 2500
+        )
 
     }
 
