@@ -8,13 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.fragment.findNavController
 import com.example.todolist.R
 import com.example.todolist.common.extensions.setVisible
 import com.example.todolist.databinding.FragmentTaskListBinding
 
-private lateinit var binding: FragmentTaskListBinding
 
 class TaskListFragment : Fragment() {
+
+    private lateinit var binding: FragmentTaskListBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,13 +30,19 @@ class TaskListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.toolbar.arrowBack.setVisible()
-        setupTextFont(binding.toolbar.titleTaskList)
+        with(binding) {
+            toolbar.titleTaskList.setVisible()
+            setupTextFont(toolbar.titleTaskList)
+            fab.setOnClickListener {
+                findNavController().navigate(
+                    TaskListFragmentDirections.actionTaskListFragmentToAddTaskFragment()
+                )
+            }
+        }
     }
 
     private fun setupTextFont(text: TextView) {
         text.typeface = ResourcesCompat.getFont(requireContext(), R.font.lemon_milk_bold)
         text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20.toFloat())
     }
-
 }
