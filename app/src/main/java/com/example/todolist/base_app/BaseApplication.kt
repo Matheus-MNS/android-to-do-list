@@ -1,6 +1,7 @@
 package com.example.todolist.base_app
 
 import android.app.Application
+import com.example.todolist.common.di.commonModule
 import com.example.todolist.feature.add_task_fragment.di.addTaskModule
 import com.example.todolist.feature.task_list_fragment.di.taskListModule
 import org.koin.android.ext.koin.androidContext
@@ -12,8 +13,10 @@ class BaseApplication : Application() {
 
         startKoin {
             modules(
+
                 taskListModule +
-                        addTaskModule
+                        addTaskModule +
+                        commonModule
             ).androidContext(applicationContext)
         }
     }
