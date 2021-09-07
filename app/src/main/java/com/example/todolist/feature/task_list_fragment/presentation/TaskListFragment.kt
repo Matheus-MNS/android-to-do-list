@@ -12,11 +12,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.todolist.R
 import com.example.todolist.common.extensions.setVisible
 import com.example.todolist.databinding.FragmentTaskListBinding
+import com.example.todolist.feature.task_list_fragment.presentation.adapter.TaskAdapter
+import com.example.todolist.feature.task_list_fragment.presentation.model.TaskModel
 
 
 class TaskListFragment : Fragment() {
 
     private lateinit var binding: FragmentTaskListBinding
+    private lateinit var adapter: TaskAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
