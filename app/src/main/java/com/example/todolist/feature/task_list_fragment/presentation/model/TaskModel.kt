@@ -2,8 +2,8 @@ package com.example.todolist.feature.task_list_fragment.presentation.model
 
 
 data class TaskModel(
-    var id: Int,
-    var taks: String
+    var id: Long = 0,
+    var task: String = ""
 )
 
 

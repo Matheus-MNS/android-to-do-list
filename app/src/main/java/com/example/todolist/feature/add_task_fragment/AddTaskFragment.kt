@@ -6,16 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.todolist.R
-import com.example.todolist.common.data.TaskDAO
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.example.todolist.common.extensions.setVisible
 import com.example.todolist.databinding.FragmentAddTaskBinding
-import com.example.todolist.feature.task_list_fragment.presentation.model.TaskModel
 
 class AddTaskFragment : Fragment() {
 
     private lateinit var binding: FragmentAddTaskBinding
-    private lateinit var taskModel: TaskModel
+    private val viewModel: AddTaskViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,13 +33,11 @@ class AddTaskFragment : Fragment() {
             toolbar.arrowBack.setOnClickListener {
                 findNavController().popBackStack()
             }
-        }
+            toolbar.saveTask.setOnClickListener {
 
-        val taskName = binding.taskName.text.toString()
+                viewModel.saveTask(taskName.text.toString())
 
-        binding.toolbar.saveTask.setOnClickListener {
-            taskModel.taks=
-
+            }
         }
     }
 }
