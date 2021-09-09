@@ -1,8 +1,6 @@
 package com.example.todolist.common.data
 
-import android.annotation.SuppressLint
-import android.util.Log
-import androidx.core.content.contentValuesOf
+import android.content.ContentValues
 import com.example.todolist.feature.task_list_fragment.presentation.model.TaskModel
 
 class TaskDAO(private val dbHelper: DataBaseHelper) {
@@ -10,20 +8,12 @@ class TaskDAO(private val dbHelper: DataBaseHelper) {
     var write = dbHelper.writableDatabase
     var read = dbHelper.readableDatabase
 
-    fun saveTask(task: String): Boolean {
+    fun saveTask(task: String) {
 
-
-        val contentValuesOf = contentValuesOf(Pair("task", task))
-
-        try {
-            write.insert(dbHelper.databaseName, null, contentValuesOf)
-            Log.i("INFO", "Tarefa salva com sucesso")
-        } catch (e: Exception) {
-            Log.e("INFO", "Erro ao salvar tarefa" + e.message)
-            return false
-        }
-
-        return true
+        write ?: return
+        var content = ContentValues()
+        content.put(COLUMNS_TASK, task)
+        write.insert(TABLE_TASK, null, content)
     }
 
     fun updateTask(task: TaskModel): Boolean {
@@ -47,7 +37,7 @@ class TaskDAO(private val dbHelper: DataBaseHelper) {
             )
             taskList.add(task)
         }
-        read.close()
+
         return taskList
     }
 }

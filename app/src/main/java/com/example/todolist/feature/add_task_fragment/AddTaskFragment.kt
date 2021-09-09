@@ -36,6 +36,7 @@ class AddTaskFragment : Fragment() {
             toolbar.saveTask.setOnClickListener {
 
                 viewModel.saveTask(taskName.text.toString())
+                findNavController().popBackStack()
 
             }
         }

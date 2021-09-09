@@ -30,7 +30,7 @@ class TaskAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(taskItem: TaskModel) {
-            binding.task.text = taskItem.task
+            binding.task.text = taskItem.taskName
 
         }
     }
