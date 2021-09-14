@@ -46,7 +46,7 @@ class SplashFragment : Fragment() {
     }
 
     private fun setupView() {
-        changeStatusBarColor(R.color.red_light)
+        changeStatusBarColor(R.color.light_red)
     }
 
     private fun setupTextFont(text: TextView) {

@@ -7,6 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="red_light">#FF5650</color>
+    <color name="light_red">#FF5650</color>
+    <color name="dark_red">#CC0000</color>
+    <color name="medium_red">#FF1A1A</color>
     <color name="snow">#FFFAFA</color>
 </resources>
