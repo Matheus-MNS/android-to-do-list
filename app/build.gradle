@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs'
 }
 
@@ -68,8 +69,5 @@ dependencies {
 
     // Lottie
     implementation "com.airbnb.android:lottie:$lottie_version"
-
-    // Gson
-    implementation "com.google.code.gson:gson:$gson_version"
 
 }

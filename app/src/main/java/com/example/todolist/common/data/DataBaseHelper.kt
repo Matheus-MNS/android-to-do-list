@@ -41,6 +41,5 @@ class DataBaseHelper(context: Context) :
             db?.execSQL(DROP_TABLE)
         }
         onCreate(db)
-
     }
 }

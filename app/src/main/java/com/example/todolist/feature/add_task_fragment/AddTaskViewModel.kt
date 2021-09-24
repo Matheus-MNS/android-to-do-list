@@ -6,8 +6,9 @@ import com.example.todolist.feature.task_list_fragment.presentation.model.TaskMo
 
 class AddTaskViewModel(private val taskDAO: TaskDAO) : ViewModel() {
 
-    fun saveTask(task: String) {
-
+    fun saveTask(task: String) =
         taskDAO.saveTask(task)
-    }
+
+    fun updateTask(task: TaskModel) =
+        taskDAO.updateTask(task)
 }

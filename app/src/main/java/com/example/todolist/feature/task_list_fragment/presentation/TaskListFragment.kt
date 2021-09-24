@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.todolist.common.extensions.setVisible
+import com.example.todolist.common.extensions.showDeleteDialog
 import com.example.todolist.databinding.FragmentTaskListBinding
 import com.example.todolist.feature.task_list_fragment.presentation.adapter.TaskAdapter
 import com.example.todolist.feature.task_list_fragment.presentation.model.TaskModel
@@ -37,9 +38,7 @@ class TaskListFragment : Fragment() {
         with(binding) {
             toolbar.titleTaskList.setVisible()
             fab.setOnClickListener {
-                findNavController().navigate(
-                    TaskListFragmentDirections.actionTaskListFragmentToAddTaskFragment()
-                )
+                navigateToAddTask()
             }
         }
     }
@@ -55,5 +54,26 @@ class TaskListFragment : Fragment() {
     private fun handleRecyclerView(list: List<TaskModel>) {
         val taskAdapter = TaskAdapter(list)
         binding.taskListRecyclerView.adapter = taskAdapter
+
+        with(taskAdapter) {
+            onItemLongClick = {
+                showDeleteDialog(
+                    positiveAction = {
+                        it?.let { id -> viewModel.deleteTask(id) }
+                        viewModel.getTaskList()
+                    }
+                )
+            }
+
+            onItemClick = {
+                navigateToAddTask(TaskModel(it.first, it.second))
+            }
+        }
+    }
+
+    private fun navigateToAddTask(taskModel: TaskModel? = null) {
+        findNavController().navigate(
+            TaskListFragmentDirections.actionTaskListFragmentToAddTaskFragment(taskModel)
+        )
     }
 }

@@ -10,6 +10,9 @@ class TaskAdapter(
     private val list: List<TaskModel>
 ) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
+    var onItemClick: ((Pair<Int?, String>) -> Unit)? = null
+    var onItemLongClick: ((Int?) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemTaskBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -30,8 +33,16 @@ class TaskAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(taskItem: TaskModel) {
-            binding.task.text = taskItem.taskName
 
+            binding.task.text = taskItem.taskName
+            itemView.setOnClickListener {
+                onItemClick?.invoke(Pair(taskItem.id, taskItem.taskName))
+            }
+
+            itemView.setOnLongClickListener {
+                onItemLongClick?.invoke(taskItem.id)
+                return@setOnLongClickListener true
+            }
         }
     }
 }

@@ -28,4 +28,9 @@ class TaskListViewModel(private val taskDAO: TaskDAO) : ViewModel() {
             ex.printStackTrace()
         }
     }
+
+    fun deleteTask(id: Int) {
+        taskDAO.deleteTask(id)
+    }
+
 }
